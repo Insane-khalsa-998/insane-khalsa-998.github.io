@@ -176,7 +176,7 @@ const Hero = () => {
               </p>
               
               {/* Skills Tags */}
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-6">
                 {[
                   'SIEM Monitoring',
                   'Incident Response',
@@ -193,6 +193,16 @@ const Hero = () => {
                     {skill}
                   </span>
                 ))}
+              </div>
+
+              {/* TryHackMe Badge */}
+              <div className="flex justify-center lg:justify-start">
+                <iframe 
+                  src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5587085" 
+                  style={{ border: 'none', width: '100%', maxWidth: '500px', height: '150px' }}
+                  title="TryHackMe Badge"
+                  loading="lazy"
+                />
               </div>
             </motion.div>
 
