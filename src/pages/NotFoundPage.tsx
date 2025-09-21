@@ -42,8 +42,6 @@ const NotFoundPage = () => {
             transition={{ type: 'spring', stiffness: 300 }}
           >
             404
-              style={{ width: '100%', height: 'auto' }}
-            />
           </motion.div>
 
           {/* Error Message */}
