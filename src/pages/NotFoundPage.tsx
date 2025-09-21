@@ -2,10 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon, HomeIcon, CodeBracketIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import BackButton from '../components/BackButton';
-
-const animation404 = new URL('../assets/404.lottie', import.meta.url).href
 
 interface SiteLink {
   name: string;
@@ -37,17 +34,14 @@ const NotFoundPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Lottie Animation - Using your local file */}
+          {/* 404 Text */}
           <motion.div
-            className="mx-auto max-w-md mb-8"
+            className="mx-auto max-w-md mb-8 text-6xl font-bold text-blue-500"
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            <DotLottieReact
-              src={animation404} // Using the imported local file
-              loop
-              autoplay
+            404
               style={{ width: '100%', height: 'auto' }}
             />
           </motion.div>

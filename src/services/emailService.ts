@@ -42,11 +42,13 @@ export const emailService = {
 
       const result = await emailjs.send(
         SERVICE_ID,
-        `template_${templateType}`, // You'll create these templates in EmailJS dashboard
+        `template_${templateType}`,
         {
-          to_name: "Portfolio Admin",
+          to_name: "Manpreet Singh",
+          to_email: "your-email@example.com", // Replace with your actual email
           from_name: data.name,
           from_email: data.email,
+          subject: emailSubject,
           message_html: emailBody,
           subject: emailSubject,
           ...data
