@@ -1,88 +1,212 @@
 import { motion } from 'framer-motion'
-import { ArrowDownIcon } from '@heroicons/react/24/outline'
+import { ArrowDownIcon, ShieldCheckIcon, CodeBracketIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 import meImage from '../assets/me.png'
 import HackerTerminal from './HackerTerminal'
 import SkillsHexagon from './SkillsHexagon'
+import AnimatedImageFrame from './AnimatedImageFrame'
 import './SecurityPatterns.css'
 
 const Hero = () => {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  }
+
+  const floatingIcons = [
+    { Icon: ShieldCheckIcon, delay: 0, x: "10%", y: "20%" },
+    { Icon: CodeBracketIcon, delay: 1, x: "85%", y: "15%" },
+    { Icon: LockClosedIcon, delay: 2, x: "15%", y: "75%" },
+    { Icon: ShieldCheckIcon, delay: 0.5, x: "80%", y: "70%" },
+  ]
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden py-16 sm:py-24">
-      {/* Security Pattern Background */}
-      <div className="absolute inset-0 security-pattern" />
-      <div className="absolute inset-0 grid-dots" />
-      
-      {/* Animated SVG Blobs Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.svg
-          className="absolute top-0 left-0 w-full h-full opacity-10"
-          viewBox="0 0 800 600"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 2 }}
-        >
-          <motion.path
-            d="M400,100 C500,50 600,150 500,250 C400,350 300,300 200,250 C100,200 150,100 250,150 C350,200 400,100 400,100 Z"
-            fill="#3B82F6"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
-          />
-          <motion.path
-            d="M600,400 C700,350 750,450 650,550 C550,650 450,600 350,550 C250,500 300,400 400,450 C500,500 600,400 600,400 Z"
-            fill="#8B5CF6"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", delay: 2 }}
-          />
-          <motion.path
-            d="M200,500 C300,450 400,550 300,650 C200,750 100,700 50,650 C0,600 50,500 150,550 C250,600 200,500 200,500 Z"
-            fill="#06B6D4"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 12, repeat: Infinity, repeatType: "reverse", delay: 4 }}
-          />
-        </motion.svg>
+      {/* Cybersecurity-themed Dynamic Background */}
+      <div className="absolute inset-0 bg-[#0a0f1f]">
+        {/* Matrix-like Digital Rain Effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={`rain-${i}`}
+              className="absolute w-px h-32 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0"
+              style={{
+                left: `${(i * 10) + Math.random() * 10}%`,
+                top: '-10%'
+              }}
+              animate={{
+                y: ['0%', '200%'],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 2,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.2
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Cyber Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(0deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        
+        {/* Glowing Circle Patterns */}
+        <div className="absolute inset-0">
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={`circle-${i}`}
+              className="absolute rounded-full"
+              style={{
+                width: `${100 + i * 50}px`,
+                height: `${100 + i * 50}px`,
+                border: '1px solid rgba(59, 130, 246, 0.1)',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)'
+              }}
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.2, 0.1],
+                rotate: [0, 180, 360]
+              }}
+              transition={{
+                duration: 10 + i * 2,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Animated Network Nodes */}
+        <div className="absolute inset-0">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`node-${i}`}
+              className="absolute w-2 h-2 bg-blue-500/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 0.6, 0.3],
+                boxShadow: [
+                  '0 0 10px rgba(59, 130, 246, 0.3)',
+                  '0 0 20px rgba(59, 130, 246, 0.5)',
+                  '0 0 10px rgba(59, 130, 246, 0.3)'
+                ]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.3
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Moving Gradient Overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10"
+          animate={{
+            background: [
+              'linear-gradient(45deg, rgba(30,64,175,0.1) 0%, transparent 50%, rgba(147,51,234,0.1) 100%)',
+              'linear-gradient(225deg, rgba(30,64,175,0.1) 0%, transparent 50%, rgba(147,51,234,0.1) 100%)',
+              'linear-gradient(45deg, rgba(30,64,175,0.1) 0%, transparent 50%, rgba(147,51,234,0.1) 100%)'
+            ]
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Floating Security Icons with Enhanced Animation */}
+        {floatingIcons.map(({ Icon, delay, x, y }, index) => (
+          <motion.div
+            key={index}
+            className="absolute pointer-events-none"
+            style={{ left: x, top: y }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0.2, 0.4, 0.2],
+              scale: [0.8, 1, 0.8],
+              rotate: [0, 360],
+            }}
+            transition={{ 
+              duration: 8,
+              delay,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Icon className="w-12 h-12 text-blue-400/40" />
+            <motion.div
+              className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: delay + 1
+              }}
+            />
+          </motion.div>
+        ))}
+        <motion.div
+          className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            rotate: [0, -180, -360],
+            x: [0, 30, 0],
+            y: [0, 50, 0]
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Avatar Section - Left on desktop, top on mobile */}
+          {/* Avatar Section with Animated Frame - Left on desktop, top on mobile */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="order-1 lg:order-1 flex justify-center lg:justify-start mb-8 lg:mb-0"
           >
-            <motion.div 
-              className="relative mx-auto lg:mx-0 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px]"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              {/* Decorative background elements */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg blur opacity-30" />
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg" />
-              
-              {/* Main image container */}
-              <motion.div 
-                className="relative bg-gray-900 rounded-lg p-1"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <motion.img
-                  src={meImage}
-                  alt="Manpreet Singh"
-                  className="
-                    relative
-                    w-full aspect-[4/5]
-                    object-cover rounded-lg
-                    transition-all duration-300 ease-in-out
-                    shadow-[0_0_15px_rgba(59,130,246,0.5)]
-                    hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]
-                  "
-                />
-              </motion.div>
-            </motion.div>
+            <AnimatedImageFrame
+              src={meImage}
+              alt="Manpreet Singh - Cybersecurity Analyst"
+              className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] aspect-[4/5]"
+            />
           </motion.div>
 
           {/* Content Section - Right on desktop, bottom on mobile */}

@@ -38,15 +38,14 @@ export const emailService = {
         };
       }
 
+      // Use a single template for all form types
+      const templateId = "template_contact"; // Change this to your actual template ID
+      
       // Create a comprehensive message that includes all form data
       let fullMessage = `Form Type: ${templateType.toUpperCase()}\n\n`;
-      fullMessage += `Name: ${data.name}\n`;
-      fullMessage += `Email: ${data.email}\n`;
-      fullMessage += `Subject: ${data.subject || 'No subject'}\n\n`;
-      fullMessage += `Message:\n${data.message}\n\n`;
+      fullMessage += `Message: ${data.message}\n\n`;
       
       if (templateType === 'hire') {
-        fullMessage += `--- Project Details ---\n`;
         fullMessage += `Company: ${data.company || 'Not specified'}\n`;
         fullMessage += `Project Type: ${data.project || 'Not specified'}\n`;
         fullMessage += `Budget: ${data.budget || 'Not specified'}\n`;
@@ -54,74 +53,44 @@ export const emailService = {
       }
       
       if (templateType === 'feedback') {
-        fullMessage += `--- Feedback Details ---\n`;
         fullMessage += `Rating: ${data.rating || 5}/5 stars\n`;
       }
 
       // Log the email data for development
       console.log('Sending email with:', {
         serviceId: SERVICE_ID,
+        templateId: templateId,
         templateType,
         from: `${data.name} <${data.email}>`,
       });
 
-      // Try different template IDs that might exist in your account
-      const possibleTemplateIds = [
-        'template_gbqcgu1', // Your existing template - try this first
-        'template_hqb2523', // Your existing template
-        'template_contact',
-        'template_default', 
-        'template_1',
-        'contact_form',
-        'default'
-      ];
+      // Prepare email parameters - using simple field names that work with most templates
+      const emailParams = {
+        from_name: data.name,
+        from_email: data.email,
+        to_name: "Manpreet Singh",
+        subject: data.subject || `${templateType.charAt(0).toUpperCase() + templateType.slice(1)} Form - ${data.name}`,
+        message: fullMessage,
+        reply_to: data.email,
+      };
 
-      let lastError;
+      console.log('Email parameters:', emailParams);
       
-      // Try each possible template ID
-      for (const templateId of possibleTemplateIds) {
-        try {
-          console.log(`Trying template ID: ${templateId}`);
-          
-          // Prepare email parameters - using simple field names that work with most templates
-          const emailParams = {
-            from_name: data.name,
-            from_email: data.email,
-            to_name: "Manpreet Singh",
-            subject: data.subject || `${templateType.charAt(0).toUpperCase() + templateType.slice(1)} Form - ${data.name}`,
-            message: fullMessage,
-            reply_to: data.email,
-          };
-
-          const result = await emailjs.send(
-            SERVICE_ID,
-            templateId,
-            emailParams,
-            PUBLIC_KEY
-          );
-          
-          console.log('Email sent successfully with template:', templateId, result);
-          return { success: true, message: "Email sent successfully!" };
-          
-        } catch (error) {
-          console.log(`Template ${templateId} failed:`, error);
-          lastError = error;
-          continue; // Try next template
-        }
-      }
+      const result = await emailjs.send(
+        SERVICE_ID,
+        templateId,
+        emailParams,
+        PUBLIC_KEY
+      );
       
-      // If all templates failed, throw the last error
-      throw lastError;
-      
+      console.log('Email sent successfully:', result);
+      return { success: true, message: "Email sent successfully!" };
     } catch (error) {
       console.error("Email sending failed:", error);
       
       // Provide more specific error messages
       if (error.status === 400) {
-        return {
-          success: false,
-          message: "Email template configuration issue. Please check the EMAILJS_SETUP.md guide to create the correct templates."
-        };
+        throw new Error("Email template not found. Please check your EmailJS template configuration.");
       } else if (error.status === 401) {
         throw new Error("EmailJS authentication failed. Please check your public key.");
       } else if (error.status === 402) {

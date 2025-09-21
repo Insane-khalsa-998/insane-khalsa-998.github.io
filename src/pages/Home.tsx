@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 import Hero from '../components/Hero'
 import ProjectCard from '../components/ProjectCard'
+import UnifiedContactForm from '../components/UnifiedContactForm'
 import { projects } from '../data/projects'
 import type { Project } from '../types/project'
-import { Link } from 'react-router-dom'
-
+import InfiniteSkills from '../components/InfiniteSkills'
 
 const Home = () => {
   return (
@@ -44,6 +44,7 @@ const Home = () => {
               >
                 <ProjectCard
                   {...project}
+                  technologies={project.technologies || []}
                 />
               </motion.div>
             ))}
@@ -52,19 +53,19 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 bg-gray-800">
-        <div className="max-w-4xl mx-auto">
+      <section id="about" className="py-12 sm:py-20 px-4 bg-gray-800">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
               About Me
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-lg sm:text-xl text-gray-300 px-2">
               Passionate about cybersecurity and technology
             </p>
           </motion.div>
@@ -74,131 +75,141 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-8"
+            className="grid md:grid-cols-2 gap-8 sm:gap-12"
           >
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Background</h3>
-              <p className="text-gray-300 leading-relaxed">
-                I'm an aspiring cybersecurity analyst with a strong foundation in computer science and a passion for understanding how systems work and how to protect them. My journey in technology has been driven by curiosity and a desire to make the digital world safer.
-              </p>
+            <div className="space-y-6 sm:space-y-8 order-2 md:order-1">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Background</h3>
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                  I'm an aspiring cybersecurity analyst with a strong foundation in computer science and a passion for understanding how systems work and how to protect them. My journey in technology has been driven by curiosity and a desire to make the digital world safer.
+                </p>
+              </div>
+              
+              <motion.div
+                className="relative rounded-lg overflow-hidden shadow-xl"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="aspect-w-16 aspect-h-9">
+                  <img 
+                    src="/src/assets/socbootcamp.jpeg" 
+                    alt="SOC Bootcamp Experience" 
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4 sm:p-6">
+                  <p className="text-white text-base sm:text-lg font-semibold drop-shadow-lg">
+                    SOC Bootcamp Graduate
+                  </p>
+                </div>
+              </motion.div>
             </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Skills</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Cybersecurity</span>
-                  <div className="w-32 bg-gray-700 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '85%' }}></div>
-                  </div>
+
+            <div className="space-y-6 sm:space-y-8 order-1 md:order-2">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Technologies & Skills</h3>
+                <div className="overflow-hidden rounded-lg">
+                  <InfiniteSkills />
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Programming</span>
-                  <div className="w-32 bg-gray-700 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <motion.div 
+                  className="bg-gray-900 p-4 sm:p-5 rounded-lg shadow-lg backdrop-blur-sm bg-opacity-60"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3">Cybersecurity</h4>
+                  <div className="w-full bg-gray-700/50 rounded-full h-2.5 sm:h-3">
+                    <motion.div 
+                      className="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '85%' }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                    />
                   </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Network Security</span>
-                  <div className="w-32 bg-gray-700 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '80%' }}></div>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-gray-900 p-4 sm:p-5 rounded-lg shadow-lg backdrop-blur-sm bg-opacity-60"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3">Development</h4>
+                  <div className="w-full bg-gray-700/50 rounded-full h-2.5 sm:h-3">
+                    <motion.div 
+                      className="bg-gradient-to-r from-green-500 to-green-600 h-full rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '80%' }}
+                      transition={{ duration: 1, delay: 0.4 }}
+                    />
                   </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Web Development</span>
-                  <div className="w-32 bg-gray-700 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '70%' }}></div>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-gray-900 p-4 sm:p-5 rounded-lg shadow-lg backdrop-blur-sm bg-opacity-60"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3">Network Security</h4>
+                  <div className="w-full bg-gray-700/50 rounded-full h-2.5 sm:h-3">
+                    <motion.div 
+                      className="bg-gradient-to-r from-purple-500 to-purple-600 h-full rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '80%' }}
+                      transition={{ duration: 1, delay: 0.6 }}
+                    />
                   </div>
-                </div>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-gray-900 p-4 sm:p-5 rounded-lg shadow-lg backdrop-blur-sm bg-opacity-60"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3">Web Development</h4>
+                  <div className="w-full bg-gray-700/50 rounded-full h-2.5 sm:h-3">
+                    <motion.div 
+                      className="bg-gradient-to-r from-orange-500 to-orange-600 h-full rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '70%' }}
+                      transition={{ duration: 1, delay: 0.8 }}
+                    />
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-  {/* Hire Me / Contact Me Section */}
-  <section id="contact" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      {/* Contact Section */}
+      <section id="contact" className="relative py-24 px-4">
+        <div className="absolute inset-0 bg-[#1a1b26]/80 backdrop-blur-sm"></div>
+        <div className="relative max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Let's Work Together
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 mb-4">
+              Get in Touch
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Interested in my services? Have feedback? Let's connect!
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Whether you want to hire me, provide feedback, or just say hello, I'd love to hear from you.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Hire Me */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-800 p-6 rounded-lg border border-gray-700 flex flex-col items-center"
-              >
-                <div className="bg-blue-500/20 p-3 rounded-full mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Hire Me</h3>
-                <p className="text-gray-300 mb-4">
-                  Looking for cybersecurity expertise? Let's discuss how I can help protect your systems.
-                </p>
-                <Link
-                  to="/hire"
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition-colors duration-200 text-center block"
-                >
-                  Get in Touch
-                </Link>
-              </motion.div>
-              
-              {/* Leave Feedback */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-800 p-6 rounded-lg border border-gray-700 flex flex-col items-center"
-              >
-                <div className="bg-green-500/20 p-3 rounded-full mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Leave Feedback</h3>
-                <p className="text-gray-300 mb-4">
-                  Appreciate my work? Have suggestions? Your feedback helps me improve.
-                </p>
-                <Link
-                  to="/feedback"
-                  className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors duration-200 text-center block"
-                >
-                  Share Feedback
-                </Link>
-              </motion.div>
-              
-              {/* Contact Me */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-800 p-6 rounded-lg border border-gray-700 flex flex-col items-center"
-              >
-                <div className="bg-purple-500/20 p-3 rounded-full mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Contact Me</h3>
-                <p className="text-gray-300 mb-4">
-                  Have questions or want to collaborate? I'd love to hear from you.
-                </p>
-                <Link
-                  to="/contact"
-                  className="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-md transition-colors duration-200 text-center block"
-                >
-                  Send Message
-                </Link>
-              </motion.div>
-            </div>
+          </motion.div>
+          
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <UnifiedContactForm />
           </motion.div>
         </div>
       </section>
