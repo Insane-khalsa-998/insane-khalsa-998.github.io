@@ -269,39 +269,6 @@ export const projects: Project[] = [
       'Created isolated test environment',
       'Developed detection algorithms',
       'Implemented behavior tracking'
-    ] [
-      'Python',
-      'Nmap',
-      'Tkinter',
-      'python-nmap',
-      'Colorama',
-      'PyInstaller',
-      'SQLite'
-    ],
-    githubUrl: 'https://github.com/Insane-khalsa-998/Advanced-Recon-Tool',
-    date: 'October 2024',
-    role: 'Security Researcher & Developer',
-    features: [
-      'Dual interface: CLI and GUI for flexibility',
-      'Port scanning with service detection using Nmap',
-      'Network discovery to find active devices on local network',
-      'Vulnerability detection via NSE (Nmap Scripting Engine)',
-      'WiFi SSID information retrieval (Windows)',
-      'Scan results exported to CSV for analysis',
-      'Action logging for audit and review in logs/recon_tool.log',
-      'Threaded scanning for improved performance'
-    ],
-    challenges: [
-      'Integrating Nmap functionality reliably across different systems',
-      'Designing a clean and intuitive GUI for non-technical users',
-      'Ensuring ethical use and preventing misuse of scanning features',
-      'Handling permissions and OS-specific commands (especially for WiFi info)'
-    ],
-    solutions: [
-      'Used python-nmap wrapper for robust Nmap integration',
-      'Built modular Tkinter GUI with tabbed navigation for clarity',
-      'Added clear disclaimers and educational warnings in UI and docs',
-      'Used subprocess and OS-specific logic safely for WiFi data retrieval'
     ]
   }
 ] 
