@@ -1,45 +1,79 @@
-# React + TypeScript + Vite
+# Portfolio Site - Manpreet Singh
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, TypeScript, and Vite, showcasing my journey and expertise in cybersecurity and development.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Modern, responsive design with smooth animations
+- Interactive components and dynamic content loading
+- Cybersecurity-focused project showcase
+- Professional skill representation
+- Secure contact form implementation
+- Performance optimized
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📂 Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── assets/        # Static assets and images
+├── components/    # Reusable UI components
+├── data/         # Project and content data
+├── pages/        # Main page components
+├── services/     # API and service integrations
+└── types/        # TypeScript type definitions
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Setup & Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Insane-khalsa-998/insane-khalsa-998.github.io.git
+cd insane-khalsa-998.github.io
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start development server:
+```bash
+npm run dev
+```
+
+4. Build for production:
+```bash
+npm run build
+```
+
+## 🌐 Deployment
+
+The site is deployed using GitHub Pages and can be accessed at [insane-khalsa-998.github.io](https://insane-khalsa-998.github.io)
+
+## 🔒 Security Features
+
+- Input validation and sanitization
+- Secure contact form implementation
+- Protected resource loading
+- XSS prevention measures
+- Content Security Policy implementation
+
+## 📝 License
+
+MIT License - feel free to use this code for your own portfolio, but please provide attribution.
+
+## 📧 Contact
+
+For any inquiries or feedback, please use the contact form on the website or connect with me on [LinkedIn](https://www.linkedin.com/in/manpreet-singh-263548221/)
 
 ```js
 // eslint.config.js
