@@ -2,194 +2,306 @@ import type { Project } from '../types/project'
 
 export const projects: Project[] = [
   {
-    id: 'SecureHub',
-    title: 'SecureHub – One-Stop Security Toolkit',
-    description: 'A modern, interactive web-based toolkit built with HTML, CSS, and JavaScript to help you explore and understand cybersecurity tools.',
-    longDescription: 'SecureHub is an all-in-one, web-based cybersecurity toolkit designed to educate and empower users through interactive, browser-based tools. From checking password strength to simulating brute-force attacks, the app combines utility and design with a privacy-first, responsive experience. Features include encryption utilities, steganography tools, password leak checks, and more — all within a sleek grassmorphism UI.',
+    id: 'advanced-recon',
+    title: 'Advanced Recon Tool',
+    description: 'A comprehensive reconnaissance tool for security assessments and penetration testing.',
+    longDescription: `A powerful reconnaissance tool designed for security professionals and penetration testers. 
+    The tool automates the process of gathering information about target systems and networks, helping identify potential security vulnerabilities.
+    Features include subdomain enumeration, port scanning, service detection, and vulnerability assessment capabilities.`,
     images: [
-      '/src/assets/Securehub/Screenshot1.png',
-      '/src/assets/Securehub/Screenshot2.png',
-      '/src/assets/Securehub/Screenshot3.png',
-      '/src/assets/Securehub/Screenshot4.png',
-      '/src/assets/Securehub/Screenshot5.png'
+      '/src/assets/advanced-recon-tool/Screenshot1.png'
     ],
     technologies: [
-      'HTML5',
-      'CSS3',
-      'JavaScript (ES6+)',
-      'Bootstrap 5',
-      'Google Fonts (Roboto)',
-      'Canvas API',
-      'Web Crypto API'
+      'Python',
+      'Nmap',
+      'Sublist3r',
+      'DNSRecon',
+      'SQLite'
     ],
-    githubUrl: 'https://github.com/Insane-khalsa-998/SecureHubPro.git',
-    liveUrl: 'https://secureminitools.netlify.app/',
+    githubUrl: 'https://github.com/Insane-khalsa-998/Advanced-Recon-Tool',
+    date: 'June 2025',
+    role: 'Security Tool Developer',
+    features: [
+      'Automated Reconnaissance',
+      'Subdomain Enumeration',
+      'Port Scanning',
+      'Service Detection',
+      'Vulnerability Assessment',
+      'Report Generation'
+    ],
+    challenges: [
+      'Optimizing scan performance',
+      'Managing concurrent scans',
+      'Handling large datasets'
+    ],
+    solutions: [
+      'Implemented multi-threading',
+      'Used efficient data structures',
+      'Optimized database queries'
+    ]
+  },
+  {
+    id: 'scamsniffer',
+    title: 'ScamSniffer',
+    description: 'An AI-powered tool for detecting and analyzing potential scam websites and phishing attempts.',
+    longDescription: `ScamSniffer is an innovative security tool that leverages machine learning to identify and analyze 
+    potential scam websites and phishing attempts. It helps users protect themselves from online fraud by providing real-time 
+    analysis of websites and communication patterns typical of scams.`,
+    images: [
+      '/src/assets/Scamsniffer/Screenshot1.png'
+    ],
+    technologies: [
+      'Python',
+      'TensorFlow',
+      'scikit-learn',
+      'Flask',
+      'BeautifulSoup'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/ScamSniffer',
     date: 'August 2025',
-    role: 'Frontend Developer',
+    role: 'ML Engineer & Security Researcher',
     features: [
-      'Password Strength & Leak Checker',
-      'AES-256 and DES Text Encryption/Decryption',
-      'Image-based Steganography Tool',
-      'Brute-force Password Simulator',
-      'Dark/Light Mode Toggle',
-      'Grassmorphism UI Design',
-      'Flip Card Animation for Tool Selection',
-      'Modular Code Structure',
-      'Responsive Layout (Mobile Friendly)'
+      'Real-time Website Analysis',
+      'Machine Learning Detection',
+      'Pattern Recognition',
+      'Automated Reporting',
+      'Browser Extension Integration'
     ],
     challenges: [
-      'Implementing secure encryption algorithms directly in-browser',
-      'Achieving smooth animations with modular, vanilla JS',
-      'Creating an intuitive UI for complex tools'
+      'Training ML models with limited datasets',
+      'Reducing false positives',
+      'Real-time analysis performance'
     ],
     solutions: [
-      'Used Web Crypto API for encryption & decryption without exposing secrets',
-      'Optimized DOM structure for performance in flip-card and image processing animations',
-      'Adopted clean UI patterns like cards, dark mode, and tooltips for usability'
-    ]
-  },
-  
-    {
-  "id": "scamsniffer",
-  "title": "ScamSniffer – Open-Source Phishing Detector",
-  "description": "AI-powered browser extension to detect phishing emails in Gmail and Outlook using LLMs and rule-based analysis.",
-  "longDescription": "ScamSniffer is an open-source phishing detection tool that integrates directly into Gmail and Outlook via a Chrome extension. It uses a combination of rule-based heuristics and multiple free large language models (LLMs) to analyze email content, detect suspicious patterns (e.g., urgency language, spoofed domains), and provide users with a risk score and verdict. All processing can be done locally or through secure API calls, ensuring privacy and transparency.",
-  images: [
-      '/src/assets/ScamSniffer/Screenshot1.png'
-  ],
-  "technologies": [
-    "Flask",
-    "Python",
-    "Chrome Extension APIs",
-    "LLMs (Groq, Ollama, Hugging Face)",
-    "JavaScript (ES6+)",
-    "HTML/CSS",
-    "RESTful API"
-  ],
-  "githubUrl": "https://github.com/Insane-khalsa-998/ScamSniffer",
-  "date": "November 2024",
-  "role": "Full-Stack Developer",
-  "features": [
-    "Real-time phishing detection in Gmail and Outlook",
-    "Multi-LLM analysis using Groq, Ollama, and Hugging Face",
-    "Risk scoring and clear verdict (Safe/Suspicious/Phishing)",
-    "Safe link and attachment preview using sandboxing",
-    "Detection of urgency tactics, spoofed sender addresses, and malicious domains",
-    "Privacy-first design with optional offline mode"
-  ],
-  "challenges": [
-    "Integrating multiple LLMs with varying response formats and latency",
-    "Extracting email content securely from Gmail/Outlook without violating ToS",
-    "Balancing accuracy and speed in real-time email analysis",
-    "Ensuring user privacy while sending data to external LLM APIs"
-  ],
-  "solutions": [
-    "Built a unified LLM adapter layer to normalize responses from different models",
-    "Used Chrome Extension APIs with minimal permissions to safely access email DOM",
-    "Combined AI with rule-based checks for faster, more reliable detection",
-    "Implemented optional local processing and encrypted API calls to protect user data"
-  ]
-},
-
-    {
-  "id": "advanced-recon-tool",
-  "title": "Advanced Reconnaissance Tool",
-  "description": "Multi-functional ethical hacking tool with CLI and GUI for network scanning, port detection, and vulnerability analysis.",
-  "longDescription": "A powerful Python-based reconnaissance tool designed for educational purposes in network security and ethical hacking. It supports both command-line and graphical interfaces, enabling users to perform port scanning, network discovery, vulnerability detection using Nmap scripts, and WiFi information retrieval. Built with modularity and learning in mind, it includes logging, CSV export, and safe scanning practices.",
-  images: [
-      '/src/assets/advanced-recon-tool/Screenshot1.png'
-  ],
-  "technologies": [
-    "Python",
-    "Nmap",
-    "Tkinter",
-    "python-nmap",
-    "Colorama",
-    "PyInstaller",
-    "SQLite"
-  ],
-  "githubUrl": "https://github.com/Insane-khalsa-998/Advanced-Recon-Tool",
-  "date": "October 2024",
-  "role": "Security Researcher & Developer",
-  "features": [
-    "Dual interface: CLI and GUI for flexibility",
-    "Port scanning with service detection using Nmap",
-    "Network discovery to find active devices on local network",
-    "Vulnerability detection via NSE (Nmap Scripting Engine)",
-    "WiFi SSID information retrieval (Windows)",
-    "Scan results exported to CSV for analysis",
-    "Action logging for audit and review in logs/recon_tool.log",
-    "Threaded scanning for improved performance"
-  ],
-  "challenges": [
-    "Integrating Nmap functionality reliably across different systems",
-    "Designing a clean and intuitive GUI for non-technical users",
-    "Ensuring ethical use and preventing misuse of scanning features",
-    "Handling permissions and OS-specific commands (especially for WiFi info)"
-  ],
-  "solutions": [
-    "Used python-nmap wrapper for robust Nmap integration",
-    "Built modular Tkinter GUI with tabbed navigation for clarity",
-    "Added clear disclaimers and educational warnings in UI and docs",
-    "Used subprocess and OS-specific logic safely for WiFi data retrieval"
-  ]
-},
-  
-  {
-    id: 'secure-chat-app',
-    title: 'End-to-End Encrypted Chat',
-    description: 'Real-time messaging application with military-grade encryption',
-    longDescription: 'A secure messaging application that provides end-to-end encryption for all communications. Features include message encryption, secure file sharing, and self-destructing messages with perfect forward secrecy.',
-    image: '/api/placeholder/600/400',
-    technologies: ['React Native', 'Node.js', 'Signal Protocol', 'WebRTC', 'MongoDB'],
-    githubUrl: 'https://github.com/example/secure-chat',
-    liveUrl: 'https://secure-chat-app.com',
-    date: 'August 2024',
-    role: 'Mobile Developer',
-    features: [
-      'End-to-end encryption using Signal Protocol',
-      'Self-destructing messages with configurable timers',
-      'Secure file sharing with encryption',
-      'Voice and video calling capabilities',
-      'Perfect forward secrecy implementation'
-    ],
-    challenges: [
-      'Implementing complex cryptographic protocols in mobile environment',
-      'Ensuring real-time message delivery with encryption',
-      'Managing key exchange and verification securely'
-    ],
-    solutions: [
-      'Used native cryptographic libraries for optimal performance',
-      'Implemented efficient key exchange using X3DH protocol',
-      'Created secure key verification system with QR codes'
+      'Implemented transfer learning',
+      'Fine-tuned model parameters',
+      'Optimized analysis pipeline'
     ]
   },
   {
-    id: 'malware-analyzer',
-    title: 'Malware Analysis Platform',
-    description: 'Automated malware detection and analysis system with sandboxing',
-    longDescription: 'A comprehensive malware analysis platform that combines static and dynamic analysis techniques to identify and analyze malicious software. Features include automated sandboxing, behavior analysis, and threat intelligence integration.',
-    image: '/api/placeholder/600/400',
-    technologies: ['Python', 'Cuckoo Sandbox', 'YARA', 'VirusTotal API', 'Docker'],
-    githubUrl: 'https://github.com/example/malware-analyzer',
-    date: 'July 2024',
-    role: 'Security Engineer',
+    id: 'epnra',
+    title: 'EPNRA - Security Personnel Management System',
+    description: 'A full-stack workforce security management application with admin/employee dashboards and real-time reporting.',
+    longDescription: `A comprehensive security personnel management system that streamlines workforce operations in the security industry. 
+    Features include location-based login, role-based access control, shift assignment management, document handling, and automated report generation. 
+    Built with modern web technologies and designed for scalability and security.`,
+    images: [
+      '/src/assets/projectplaceholder.png'  // Update with actual project images
+    ],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Flask',
+      'SQLite',
+      'Bootstrap',
+      'MUI Icons'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/EPNRA',
+    date: 'September 2025',
+    role: 'Full-Stack Developer',
     features: [
-      'Automated static and dynamic analysis',
-      'Sandboxed execution environment',
-      'YARA rule-based detection',
-      'Threat intelligence integration',
-      'Comprehensive analysis reports'
+      'Admin and Employee Dashboards',
+      'Location-based Login System',
+      'Role-based Access Control',
+      'Shift Assignment Management',
+      'Document Management',
+      'Real-time Reporting',
+      'Automated Report Generation'
     ],
     challenges: [
-      'Creating isolated execution environments for malware analysis',
-      'Implementing accurate detection algorithms',
-      'Handling large volumes of sample analysis'
+      'Implementing secure location-based authentication',
+      'Managing complex role-based permissions',
+      'Building an efficient document management system'
     ],
     solutions: [
-      'Used Docker containers with limited privileges for isolation',
-      'Implemented ensemble detection methods combining multiple algorithms',
-      'Created distributed processing system for high-volume analysis'
+      'Used geolocation API with secure validation',
+      'Implemented hierarchical RBAC system',
+      'Optimized document storage and retrieval'
+    ]
+  },
+  {
+    id: 'vpn-tunnel',
+    title: 'VPN Tunnel Implementation',
+    description: 'A secure VPN tunnel solution using OpenVPN for encrypted communications in enterprise environments.',
+    longDescription: `Developed and implemented a secure VPN tunnel infrastructure using OpenVPN to provide encrypted communication channels. 
+    The project includes robust authentication mechanisms, traffic routing configurations, and comprehensive traffic inspection capabilities 
+    to ensure secure enterprise connectivity.`,
+    images: [
+      '/src/assets/projectplaceholder.png'  // Update with actual project images
+    ],
+    technologies: [
+      'OpenVPN',
+      'Linux',
+      'Networking',
+      'Shell Scripting',
+      'Traffic Analysis'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/vpn-tunnel',
+    date: 'July 2025',
+    role: 'Network Security Engineer',
+    features: [
+      'Secure VPN Infrastructure',
+      'Strong Authentication',
+      'Traffic Routing',
+      'Network Inspection',
+      'Enterprise Connectivity'
+    ],
+    challenges: [
+      'Configuring secure authentication methods',
+      'Optimizing network routing',
+      'Implementing traffic inspection'
+    ],
+    solutions: [
+      'Implemented certificate-based authentication',
+      'Created efficient routing tables',
+      'Deployed traffic analysis tools'
+    ]
+  },
+  {
+    id: 'honeypot',
+    title: 'Honeypot Deployment',
+    description: 'A sophisticated honeypot environment using Cowrie/modern honeypot tools for threat intelligence gathering.',
+    longDescription: `Designed and deployed a comprehensive honeypot environment to capture and analyze attacker behavior, 
+    brute-force attempts, and malicious payloads. The system provides valuable threat intelligence and helps understand 
+    attack patterns and techniques.`,
+    images: [
+      '/src/assets/projectplaceholder.png'  // Update with actual project images
+    ],
+    technologies: [
+      'Cowrie',
+      'Python',
+      'Linux',
+      'Log Analysis',
+      'Threat Intelligence'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/honeypot-deployment',
+    date: 'June 2025',
+    role: 'Security Researcher',
+    features: [
+      'Attacker Behavior Analysis',
+      'Brute-force Detection',
+      'Payload Capture',
+      'Real-time Monitoring',
+      'Threat Intelligence Collection'
+    ],
+    challenges: [
+      'Setting up convincing decoy services',
+      'Capturing and analyzing attack data',
+      'Maintaining honeypot security'
+    ],
+    solutions: [
+      'Implemented realistic system emulation',
+      'Created automated analysis tools',
+      'Established secure monitoring systems'
+    ]
+  },
+  {
+    id: 'phishing-toolkit',
+    title: 'Phishing Simulation Toolkit',
+    description: 'An educational toolkit for testing user awareness and simulating spear-phishing attempts securely.',
+    longDescription: `Created a comprehensive phishing awareness toolkit for testing user security awareness and simulating 
+    targeted phishing attempts. The system includes credential capture simulation and detailed awareness reporting capabilities, 
+    helping organizations identify and address security training needs.`,
+    images: [
+      '/src/assets/projectplaceholder.png'  // Update with actual project images
+    ],
+    technologies: [
+      'Python',
+      'Web Development',
+      'Email Protocols',
+      'Database Management',
+      'Analytics'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/phishing-toolkit',
+    date: 'May 2025',
+    role: 'Security Tool Developer',
+    features: [
+      'Phishing Template Generation',
+      'User Awareness Testing',
+      'Credential Capture Simulation',
+      'Reporting Dashboard',
+      'Training Recommendations'
+    ],
+    challenges: [
+      'Creating realistic phishing scenarios',
+      'Implementing safe testing methods',
+      'Building comprehensive reporting'
+    ],
+    solutions: [
+      'Developed customizable templates',
+      'Implemented sandboxed testing',
+      'Created detailed analytics system'
+    ]
+  },
+  {
+    id: 'spyware-analysis',
+    title: 'Android Spyware Analysis Tool',
+    description: 'A proof-of-concept tool for analyzing Android spyware behavior in controlled lab environments.',
+    longDescription: `Developed a specialized tool for analyzing Android spyware behavior, focusing on permissions abuse, 
+    keylogging detection, and data exfiltration techniques. This tool helps understand mobile threat vectors and provides 
+    insights into real-world attack scenarios.`,
+    images: [
+      '/src/assets/projectplaceholder.png'  // Update with actual project images
+    ],
+    technologies: [
+      'Android SDK',
+      'Java',
+      'Python',
+      'Static Analysis',
+      'Dynamic Analysis'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/android-spyware-analysis',
+    date: 'April 2025',
+    role: 'Security Researcher',
+    features: [
+      'Permission Analysis',
+      'Keylogger Detection',
+      'Data Exfiltration Analysis',
+      'Behavioral Monitoring',
+      'Lab Testing Environment'
+    ],
+    challenges: [
+      'Implementing safe analysis environment',
+      'Detecting sophisticated malware',
+      'Analyzing complex behaviors'
+    ],
+    solutions: [
+      'Created isolated test environment',
+      'Developed detection algorithms',
+      'Implemented behavior tracking'
+    ] [
+      'Python',
+      'Nmap',
+      'Tkinter',
+      'python-nmap',
+      'Colorama',
+      'PyInstaller',
+      'SQLite'
+    ],
+    githubUrl: 'https://github.com/Insane-khalsa-998/Advanced-Recon-Tool',
+    date: 'October 2024',
+    role: 'Security Researcher & Developer',
+    features: [
+      'Dual interface: CLI and GUI for flexibility',
+      'Port scanning with service detection using Nmap',
+      'Network discovery to find active devices on local network',
+      'Vulnerability detection via NSE (Nmap Scripting Engine)',
+      'WiFi SSID information retrieval (Windows)',
+      'Scan results exported to CSV for analysis',
+      'Action logging for audit and review in logs/recon_tool.log',
+      'Threaded scanning for improved performance'
+    ],
+    challenges: [
+      'Integrating Nmap functionality reliably across different systems',
+      'Designing a clean and intuitive GUI for non-technical users',
+      'Ensuring ethical use and preventing misuse of scanning features',
+      'Handling permissions and OS-specific commands (especially for WiFi info)'
+    ],
+    solutions: [
+      'Used python-nmap wrapper for robust Nmap integration',
+      'Built modular Tkinter GUI with tabbed navigation for clarity',
+      'Added clear disclaimers and educational warnings in UI and docs',
+      'Used subprocess and OS-specific logic safely for WiFi data retrieval'
     ]
   }
 ] 

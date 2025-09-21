@@ -1,10 +1,17 @@
 import { motion } from 'framer-motion'
 import { ArrowDownIcon } from '@heroicons/react/24/outline'
-import avatarSide from '../assets/avatar side.png'
+import meImage from '../assets/me.png'
+import HackerTerminal from './HackerTerminal'
+import SkillsHexagon from './SkillsHexagon'
+import './SecurityPatterns.css'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden py-16 sm:py-24">
+      {/* Security Pattern Background */}
+      <div className="absolute inset-0 security-pattern" />
+      <div className="absolute inset-0 grid-dots" />
+      
       {/* Animated SVG Blobs Background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.svg
@@ -42,26 +49,40 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Avatar Section - Left on desktop, top on mobile */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1 flex justify-center lg:justify-start"
+            className="order-1 lg:order-1 flex justify-center lg:justify-start mb-8 lg:mb-0"
           >
-            <div className="relative left-[50px] lg:left-0">
-              <img
-                src={avatarSide}
-                alt="Manpreet Singh"
-                className="
-                  w-64 h-80
-                  sm:w-72 sm:h-96
-                  md:w-80 md:h-[420px]
-                  lg:w-96 lg:h-[500px]
-                  xl:w-[400px] xl:h-[520px]
-                  object-cover rounded-full shadow-xl border-4 border-blue-500
-                  transition-all duration-300 ease-in-out
-                "
-              />
-            </div>
+            <motion.div 
+              className="relative mx-auto lg:mx-0 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px]"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              {/* Decorative background elements */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg blur opacity-30" />
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg" />
+              
+              {/* Main image container */}
+              <motion.div 
+                className="relative bg-gray-900 rounded-lg p-1"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <motion.img
+                  src={meImage}
+                  alt="Manpreet Singh"
+                  className="
+                    relative
+                    w-full aspect-[4/5]
+                    object-cover rounded-lg
+                    transition-all duration-300 ease-in-out
+                    shadow-[0_0_15px_rgba(59,130,246,0.5)]
+                    hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]
+                  "
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* Content Section - Right on desktop, bottom on mobile */}
@@ -69,14 +90,14 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 text-center lg:text-left"
+            className="order-1 lg:order-2 text-center lg:text-left px-4 sm:px-6 md:px-8 lg:px-0"
           >
             {/* Title */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight"
             >
               Manpreet Singh
             </motion.h1>
@@ -86,9 +107,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
             >
-              Aspiring Cybersecurity Analyst — Learning by Building, Defending by Doing.
+              Cybersecurity Analyst / SOC Analyst — Securing Digital Assets, One Byte at a Time
             </motion.p>
 
             {/* Action Buttons */}
@@ -102,7 +123,7 @@ const Hero = () => {
                 href="https://github.com/Insane-khalsa-998"
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn-primary flex items-center justify-center gap-2"
+                className="btn-primary flex items-center justify-center gap-2 group w-full sm:w-auto px-6"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -116,7 +137,7 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/manpreet-singh-263548221/"
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn-secondary flex items-center justify-center gap-2"
+                className="btn-secondary flex items-center justify-center gap-2 group w-full sm:w-auto px-6"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -127,10 +148,10 @@ const Hero = () => {
               </motion.a>
               
               <motion.a 
-                href="/resume.pdf" 
+                href="/src/assets/manpreet_resume_soc.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn-secondary flex items-center justify-center gap-2"
+                className="btn-secondary flex items-center justify-center gap-2 group w-full sm:w-auto px-6"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -148,15 +169,55 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 1.0 }}
               className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 shadow-2xl"
             >
-              <p className="text-gray-200 leading-relaxed">
-                Passionate about cybersecurity and technology, I specialize in identifying vulnerabilities, 
-                implementing security solutions, and staying ahead of emerging threats. Currently focused 
-                on network security, penetration testing, and secure software development practices.
+              <p className="text-gray-200 leading-relaxed mb-6">
+                Experienced Security Officer transitioning to Cybersecurity, with hands-on expertise in SIEM monitoring, 
+                threat detection, and incident response. Skilled in Python, JavaScript/TypeScript, and modern frameworks. 
+                Currently focused on SOC analysis and security tool development.
               </p>
+              
+              {/* Skills Tags */}
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                {[
+                  'SIEM Monitoring',
+                  'Incident Response',
+                  'Python',
+                  'React',
+                  'TypeScript',
+                  'Security+',
+                  'SOC Analysis'
+                ].map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Interactive Terminal */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="mt-8"
+            >
+              <HackerTerminal />
             </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Skills Hexagon Grid */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute -z-10 bottom-0 left-0 right-0 pointer-events-none opacity-20"
+      >
+        <SkillsHexagon />
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div

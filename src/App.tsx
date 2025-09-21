@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { 
@@ -9,11 +9,8 @@ import {
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import Home from './pages/Home'
+import { Suspense } from 'react'
 import ProjectDetails from './pages/ProjectDetails'
-import ImageCropperDemo from './pages/ImageCropperDemo'
-import HireForm from './components/HireForm'
-import FeedbackForm from './components/FeedbackForm'
-import ContactForm from './components/ContactForm'
 import NotFoundPage from './pages/NotFoundPage'
 import Loader from './components/Loader'
 
@@ -27,9 +24,6 @@ const generateRandomBinary = (length: number) => {
 }
 
 function App() {
-  const [scrollY, setScrollY] = useState(0)
-  
-  
   // Generate multiple binary strings with random positions and animations
   const binaryStrings = useMemo(() => {
     return Array.from({ length: 30 }).map((_, i) => ({
@@ -42,11 +36,7 @@ function App() {
     }))
   }, [])
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+
 
   const floatingIcons = [
     { icon: ShieldCheckIcon, x: '10%', y: '20%', delay: 0 },
@@ -124,15 +114,17 @@ function App() {
       <Sidebar />
 
       {/* Main Content */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/project/:id" element={<ProjectDetails />} />
-        <Route path="/cropper-demo" element={<ImageCropperDemo />} />
-        <Route path="/hire" element={<HireForm />} />
-        <Route path="/feedback" element={<FeedbackForm />} />
-        <Route path="/contact" element={<ContactForm />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-blue-400 text-xl">Loading...</div>
+        </div>
+      }>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </div>
   )
 }

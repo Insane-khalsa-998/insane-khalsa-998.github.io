@@ -9,8 +9,7 @@ const Navbar = () => {
     { name: 'Home', href: '#home' },
     { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Cropper Demo', href: '/cropper-demo' },
+    { name: 'Contact', href: '#contact' }
   ]
 
   return (
