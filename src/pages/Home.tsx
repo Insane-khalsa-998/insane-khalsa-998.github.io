@@ -92,7 +92,7 @@ const Home = () => {
               >
                 <div className="aspect-w-16 aspect-h-9">
                   <img 
-                    src="/src/assets/socbootcamp.jpeg" 
+                    src="/src/assets/socbootcamp.webp" 
                     alt="SOC Bootcamp Experience" 
                     className="w-full h-full object-cover rounded-lg"
                   />

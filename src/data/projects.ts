@@ -9,7 +9,7 @@ export const projects: Project[] = [
     The tool automates the process of gathering information about target systems and networks, helping identify potential security vulnerabilities.
     Features include subdomain enumeration, port scanning, service detection, and vulnerability assessment capabilities.`,
     images: [
-      '/src/assets/advanced-recon-tool/Screenshot1.png'
+      '/src/assets/advanced-recon-tool1.png'
     ],
     technologies: [
       'Python',
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     potential scam websites and phishing attempts. It helps users protect themselves from online fraud by providing real-time 
     analysis of websites and communication patterns typical of scams.`,
     images: [
-      '/src/assets/Scamsniffer/Screenshot1.png'
+      '/src/assets/Scamsniffer.png'
     ],
     technologies: [
       'Python',
@@ -269,39 +269,6 @@ export const projects: Project[] = [
       'Created isolated test environment',
       'Developed detection algorithms',
       'Implemented behavior tracking'
-    ] [
-      'Python',
-      'Nmap',
-      'Tkinter',
-      'python-nmap',
-      'Colorama',
-      'PyInstaller',
-      'SQLite'
-    ],
-    githubUrl: 'https://github.com/Insane-khalsa-998/Advanced-Recon-Tool',
-    date: 'October 2024',
-    role: 'Security Researcher & Developer',
-    features: [
-      'Dual interface: CLI and GUI for flexibility',
-      'Port scanning with service detection using Nmap',
-      'Network discovery to find active devices on local network',
-      'Vulnerability detection via NSE (Nmap Scripting Engine)',
-      'WiFi SSID information retrieval (Windows)',
-      'Scan results exported to CSV for analysis',
-      'Action logging for audit and review in logs/recon_tool.log',
-      'Threaded scanning for improved performance'
-    ],
-    challenges: [
-      'Integrating Nmap functionality reliably across different systems',
-      'Designing a clean and intuitive GUI for non-technical users',
-      'Ensuring ethical use and preventing misuse of scanning features',
-      'Handling permissions and OS-specific commands (especially for WiFi info)'
-    ],
-    solutions: [
-      'Used python-nmap wrapper for robust Nmap integration',
-      'Built modular Tkinter GUI with tabbed navigation for clarity',
-      'Added clear disclaimers and educational warnings in UI and docs',
-      'Used subprocess and OS-specific logic safely for WiFi data retrieval'
     ]
   }
 ] 
