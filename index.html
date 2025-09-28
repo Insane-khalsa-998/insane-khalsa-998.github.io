@@ -2,13 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/insane-khalsa-998.github.io/laptop.png" />
+    <link rel="icon" href="/LatestPortfolio-/laptop.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manpreet's Portfolio</title>
-    <script type="module" crossorigin src="/insane-khalsa-998.github.io/assets/index-BWtfvTtv.js"></script>
-    <link rel="stylesheet" crossorigin href="/insane-khalsa-998.github.io/assets/index.CeCHWM34.css">
+    <script type="module" crossorigin src="/LatestPortfolio-/assets/index-ByZKI1ON.js"></script>
+    <link rel="modulepreload" crossorigin href="/LatestPortfolio-/assets/vendor-DOHx2j1n.js">
+    <link rel="modulepreload" crossorigin href="/LatestPortfolio-/assets/router-eXkK74Aw.js">
+    <link rel="modulepreload" crossorigin href="/LatestPortfolio-/assets/motion-BJX7s10x.js">
+    <link rel="stylesheet" crossorigin href="/LatestPortfolio-/assets/index-CVJXSRsf.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Ensure HashRouter is engaged if user opens the base path without a hash
+      if (!location.hash) {
+        // Keep query (if any) BEFORE the hash fragment
+        const path = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/'
+        const target = path + (location.search || '') + '#/'
+        location.replace(target)
+      }
+    </script>
   </body>
 </html>
