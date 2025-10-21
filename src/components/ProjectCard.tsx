@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -6,7 +6,7 @@ import {
   CodeBracketIcon,
   ArrowTopRightOnSquareIcon
 } from '@heroicons/react/24/outline'
-import projectplaceholder from '../assets/projectplaceholder.png'
+import projectplaceholder from '/projectplaceholder.png'
 
 interface ProjectCardProps {
   id: string
@@ -30,14 +30,87 @@ const ProjectCard = ({
   const navigate = useNavigate()
   const [imgSrc, setImgSrc] = useState<string>(images?.[0] || projectplaceholder)
   const [isLoading, setIsLoading] = useState(true)
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Reset image when project data changes
     setImgSrc(images?.[0] || projectplaceholder)
+    setImageLoaded(false)
+    setIsLoading(true)
   }, [images])
 
+
+
+  // Intersection Observer for lazy loading and performance optimization
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    )
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Preload image when in view
+  useEffect(() => {
+    if (isInView && imgSrc && !imageLoaded) {
+      console.log('Preloading image:', imgSrc)
+
+      // Try multiple approaches to load the image
+      const tryLoadImage = (src: string, attempt: number = 0) => {
+        const img = new Image()
+
+        img.onload = () => {
+          console.log('Image loaded successfully:', src)
+          setImageLoaded(true)
+          setIsLoading(false)
+        }
+
+        img.onerror = (e) => {
+          console.error(`Image failed to load (attempt ${attempt}):`, src, e)
+
+          // Try alternative paths if main path fails
+          if (attempt === 0 && src.startsWith('/')) {
+            // Try with base path
+            tryLoadImage(`/insane-khalsa-998.github.io${src}`, attempt + 1)
+          } else if (attempt === 1) {
+            // Try without leading slash
+            tryLoadImage(src.substring(1), attempt + 1)
+          } else {
+            // Final fallback to placeholder
+            setImgSrc(projectplaceholder)
+            setImageLoaded(true)
+            setIsLoading(false)
+          }
+        }
+
+        img.src = src
+      }
+
+      tryLoadImage(imgSrc)
+    }
+  }, [isInView, imgSrc, imageLoaded])
+
   const handleImageError = () => {
+    console.error('Image failed to load:', imgSrc)
     setImgSrc(projectplaceholder)
+    setImageLoaded(true)
+    setIsLoading(false)
   }
 
   const handleViewDetails = () => {
@@ -55,14 +128,38 @@ const ProjectCard = ({
     >
       {/* Project Image */}
       <div className="relative h-48 overflow-hidden flex-shrink-0">
-        <img
-          src={imgSrc}
-          alt={title}
-          className={`w-full h-full object-cover transition-all duration-500 ${isLoading ? 'blur-sm scale-105' : 'blur-none'}`}
-          onLoad={() => setIsLoading(false)}
-          onError={handleImageError}
-          loading="lazy"
-        />
+        {/* Loading skeleton for weak hardware */}
+        {isLoading && (
+          <div className="absolute inset-0 bg-gray-700 animate-pulse flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-gray-500 border-t-blue-400 rounded-full animate-spin"></div>
+          </div>
+        )}
+
+        {/* Optimized image loading */}
+        {isInView && (
+          <img
+            src={imgSrc}
+            alt={title}
+            className={`w-full h-full object-cover transition-all duration-500 ${
+              isLoading ? 'opacity-0' : 'opacity-100'
+            }`}
+            onLoad={() => setIsLoading(false)}
+            onError={handleImageError}
+            loading="lazy"
+            decoding="async"
+            style={{
+              willChange: 'auto',
+              transform: 'translateZ(0)', // Force hardware acceleration
+            }}
+          />
+        )}
+
+        {/* Placeholder when not in view */}
+        {!isInView && (
+          <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+            <div className="text-gray-500 text-sm">Loading...</div>
+          </div>
+        )}
 
         {/* Overlay Actions */}
         <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">

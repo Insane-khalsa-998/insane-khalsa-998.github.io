@@ -1,15 +1,19 @@
 /*
-  Content-Type: application/javascript
+  # Security and cache headers only. Do NOT set Content-Type here —
+  # Netlify will automatically serve files with the correct MIME types.
   X-Content-Type-Options: nosniff
 
 /*.js
-  Content-Type: application/javascript
-
+  Cache-Control: public, max-age=31536000, immutable
++
 /*.mjs
-  Content-Type: application/javascript
-
++
 /*.css
-  Content-Type: text/css
++
+  Cache-Control: public, max-age=31536000, immutable
++
 
 /*.html
-  Content-Type: text/html; charset=utf-8
++
+  Cache-Control: public, max-age=600
++

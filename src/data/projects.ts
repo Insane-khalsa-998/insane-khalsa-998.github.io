@@ -9,7 +9,7 @@ export const projects: Project[] = [
     The tool automates the process of gathering information about target systems and networks, helping identify potential security vulnerabilities.
     Features include subdomain enumeration, port scanning, service detection, and vulnerability assessment capabilities.`,
     images: [
-      '/src/assets/advanced-recon-tool1.png'
+      '/advanced-recon-tool1.png'
     ],
     technologies: [
       'Python',
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     potential scam websites and phishing attempts. It helps users protect themselves from online fraud by providing real-time 
     analysis of websites and communication patterns typical of scams.`,
     images: [
-      '/src/assets/Scamsniffer.png'
+      '/Scamsniffer.png'
     ],
     technologies: [
       'Python',
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     Features include location-based login, role-based access control, shift assignment management, document handling, and automated report generation. 
     Built with modern web technologies and designed for scalability and security.`,
     images: [
-      '/src/assets/projectplaceholder.png'  // Update with actual project images
+      '/projectplaceholder.png'  // Update with actual project images
     ],
     technologies: [
       'React',
@@ -127,7 +127,7 @@ export const projects: Project[] = [
     The project includes robust authentication mechanisms, traffic routing configurations, and comprehensive traffic inspection capabilities 
     to ensure secure enterprise connectivity.`,
     images: [
-      '/src/assets/projectplaceholder.png'  // Update with actual project images
+      '/projectplaceholder.png'  // Update with actual project images
     ],
     technologies: [
       'OpenVPN',
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     brute-force attempts, and malicious payloads. The system provides valuable threat intelligence and helps understand 
     attack patterns and techniques.`,
     images: [
-      '/src/assets/projectplaceholder.png'  // Update with actual project images
+      '/projectplaceholder.png'  // Update with actual project images
     ],
     technologies: [
       'Cowrie',
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     targeted phishing attempts. The system includes credential capture simulation and detailed awareness reporting capabilities, 
     helping organizations identify and address security training needs.`,
     images: [
-      '/src/assets/projectplaceholder.png'  // Update with actual project images
+      '/projectplaceholder.png'  // Update with actual project images
     ],
     technologies: [
       'Python',
@@ -241,7 +241,7 @@ export const projects: Project[] = [
     keylogging detection, and data exfiltration techniques. This tool helps understand mobile threat vectors and provides 
     insights into real-world attack scenarios.`,
     images: [
-      '/src/assets/projectplaceholder.png'  // Update with actual project images
+      '/projectplaceholder.png'  // Update with actual project images
     ],
     technologies: [
       'Android SDK',
@@ -271,4 +271,4 @@ export const projects: Project[] = [
       'Implemented behavior tracking'
     ]
   }
-] 
+]

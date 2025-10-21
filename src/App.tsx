@@ -1,9 +1,9 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { 
-  ShieldCheckIcon, 
-  CodeBracketIcon, 
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  ShieldCheckIcon,
+  CodeBracketIcon,
   LockClosedIcon
 } from '@heroicons/react/24/outline'
 import Navbar from './components/Navbar'
@@ -24,9 +24,68 @@ const generateRandomBinary = (length: number) => {
 }
 
 function App() {
-  // Generate multiple binary strings with random positions and animations
+  // Performance detection for weak hardware optimization
+  const [isLowPerformance, setIsLowPerformance] = useState(false)
+
+  useEffect(() => {
+    // Detect hardware performance
+    const detectPerformance = () => {
+      const connection = (navigator as any).connection
+      const isSlowConnection = connection && (
+        connection.effectiveType === 'slow-2g' ||
+        connection.effectiveType === '2g' ||
+        connection.saveData
+      )
+
+      // Check hardware concurrency (number of CPU cores)
+      const isLowEndHardware = navigator.hardwareConcurrency <= 2
+
+      // Check memory (if available)
+      const isLowMemory = (navigator as any).deviceMemory && (navigator as any).deviceMemory <= 2
+
+      setIsLowPerformance(isSlowConnection || isLowEndHardware || isLowMemory)
+    }
+
+    detectPerformance()
+  }, [])
+
+  // Asset preloading for better performance
+  useEffect(() => {
+    if (isLowPerformance) return // Skip preloading on weak hardware
+
+    const criticalAssets = [
+      '/projectplaceholder.png',
+      '/socbootcamp.webp',
+      '/advanced-recon-tool1.png',
+      '/Scamsniffer.png'
+    ]
+
+    const preloadAssets = async () => {
+      const preloadPromises = criticalAssets.map(asset => {
+        return new Promise<void>((resolve) => {
+          const link = document.createElement('link')
+          link.rel = 'preload'
+          link.as = 'image'
+          link.href = asset
+          link.onload = () => resolve()
+          link.onerror = () => resolve() // Don't fail on missing assets
+          document.head.appendChild(link)
+        })
+      })
+
+      await Promise.allSettled(preloadPromises)
+    }
+
+    // Delay preloading to not block initial render
+    const timeoutId = setTimeout(preloadAssets, 1000)
+
+    return () => clearTimeout(timeoutId)
+  }, [isLowPerformance])
+
+  // Generate optimized binary strings based on performance
   const binaryStrings = useMemo(() => {
-    return Array.from({ length: 30 }).map((_, i) => ({
+    const count = isLowPerformance ? 10 : 30 // Reduce animations on weak hardware
+    return Array.from({ length: count }).map((_, i) => ({
       id: i,
       text: generateRandomBinary(40 + Math.floor(Math.random() * 30)),
       x: Math.random() * 100,
@@ -34,7 +93,7 @@ function App() {
       speed: 0.2 + Math.random() * 0.5,
       direction: Math.random() * 360,
     }))
-  }, [])
+  }, [isLowPerformance])
 
 
 
@@ -55,19 +114,19 @@ function App() {
         }}
       />
 
-      {/* Floating Icons - z-index -2 */}
-      {floatingIcons.map((item, index) => (
+      {/* Floating Icons - z-index -2 (disabled on low performance) */}
+      {!isLowPerformance && floatingIcons.map((item, index) => (
         <motion.div
           key={index}
           className="absolute z-[-2]"
           style={{ left: item.x, top: item.y }}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ 
+          animate={{
             opacity: 0.2,
             y: 0,
           }}
-          transition={{ 
-            delay: item.delay, 
+          transition={{
+            delay: item.delay,
             duration: 2,
             repeat: Infinity,
             repeatType: "reverse",
@@ -78,28 +137,28 @@ function App() {
         </motion.div>
       ))}
 
-      {/* Binary Code Background - z-index -1 */}
+      {/* Binary Code Background - z-index -1 (optimized for low performance) */}
       <div className="absolute inset-0 pointer-events-none z-[-1] overflow-hidden">
-        {binaryStrings.map((binary) => (
+        {binaryStrings.slice(0, isLowPerformance ? 5 : binaryStrings.length).map((binary) => (
           <motion.div
             key={binary.id}
             className="absolute text-gray-500 opacity-[0.03] font-mono text-xs whitespace-nowrap"
-            style={{ 
-              left: `${binary.x}%`, 
+            style={{
+              left: `${binary.x}%`,
               top: `${binary.y}%`,
             }}
-            initial={{ 
+            initial={{
               opacity: 0,
               x: 0,
               y: 0
             }}
-            animate={{ 
+            animate={{
               opacity: [0.03, 0.05, 0.03],
-              x: `calc(${binary.x}% + ${Math.cos(binary.direction) * 100}vw)`,
-              y: `calc(${binary.y}% + ${Math.sin(binary.direction) * 100}vh)`,
+              x: `calc(${binary.x}% + ${Math.cos(binary.direction) * (isLowPerformance ? 20 : 100)}vw)`,
+              y: `calc(${binary.y}% + ${Math.sin(binary.direction) * (isLowPerformance ? 20 : 100)}vh)`,
             }}
-            transition={{ 
-              duration: 20 / binary.speed,
+            transition={{
+              duration: isLowPerformance ? 40 / binary.speed : 20 / binary.speed,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -129,4 +188,4 @@ function App() {
   )
 }
 
-export default App  
+export default App
